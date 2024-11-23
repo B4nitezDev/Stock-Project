@@ -1,7 +1,7 @@
 ﻿using Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Domain
+namespace Infrastructure
 {
     public class DbContextStockManagement : DbContext
     {

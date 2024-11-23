@@ -1,5 +1,10 @@
-using Domain;
+using Application.Interfaces.Services;
+using Infrastructure;
+using Domain.Entity;
+using Application.Interfaces.Repositories;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Infrastructure.Services;
 
 namespace stock_project
 {
@@ -11,7 +16,12 @@ namespace stock_project
 
             string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<DbContextStockManagement>(options => options.UseSqlServer(connectionString, b => b.MigrationsAssembly("stock-project")));
+            
             // Add services to the container.
+            builder.Services.AddScoped<IUserServices, UserService>();
+
+            // Add repositories to the container.
+            builder.Services.AddScoped(typeof(IRepository<User>), typeof(Repository<User>));
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

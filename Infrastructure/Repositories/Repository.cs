@@ -1,10 +1,9 @@
-﻿using Domain;
-using Domain.Interfaces.Repositories;
+﻿using Application.Interfaces.Repositories;
 using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories
 {
-    public class Repositories<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         protected readonly DbContextStockManagement _context;  
         public IQueryable<T> AsQueryable()
